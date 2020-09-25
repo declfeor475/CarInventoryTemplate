@@ -11,6 +11,7 @@ namespace CarInventory
 {
     public partial class Form1 : Form
     {
+        List<Car> cars = new List<Car>();
 
         public Form1()
         {
@@ -19,7 +20,25 @@ namespace CarInventory
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            int year = Convert.ToInt16(yearInput.Text);
+            string make = makeInput.Text;
+            string colour = colourInput.Text;
+            int mileage = Convert.ToInt32(mileageInput.Text);
 
+            Car newCar = new Car(year, make, colour, mileage);
+
+            cars.Add(newCar);
+
+            outputLabel.Text = "";
+
+            //this foreach loop does the same as a for loop but less code
+            foreach (Car c in cars)
+            {
+                outputLabel.Text += c.year + "\n";
+                outputLabel.Text += c.make + "\n";
+                outputLabel.Text += c.colour + "\n";
+                outputLabel.Text += c.mileage + "\n\n";
+            }
         }
     }
 }
